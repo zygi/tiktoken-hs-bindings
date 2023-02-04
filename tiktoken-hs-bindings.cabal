@@ -1,0 +1,70 @@
+cabal-version:      3.4
+name:               tiktoken-hs-bindings
+version:            0.1.0.0
+synopsis:
+
+-- A longer description of the package.
+-- description:
+homepage:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            MIT
+license-file:       LICENSE
+author:             Zygimantas Straznickas
+maintainer:         hi@zygi.me
+
+-- A copyright notice.
+-- copyright:
+-- category:
+build-type: Custom
+extra-source-files:
+    ./rust-src/**/*.rs
+    ./rust-src/**/*.toml
+    ./rust-src/**/*.py
+    ./rust-src/**/*.json
+
+custom-setup
+  setup-depends:
+        base, Cabal, directory, filepath, process
+
+
+library
+    exposed-modules:  TiktokenHSBindings
+
+    -- Modules included in this library but not exported.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.16.4.0
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+    extra-bundled-libraries: Ctiktoken_hs_bindings_native
+    -- extra-lib-dirs-static: ${pkgroot}/rust-src/target/release
+
+executable tiktoken-hs-bindings
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        base ^>=4.16.4.0,
+        tiktoken-hs-bindings
+
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+test-suite tiktoken-hs-bindings-test
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          MyLibTest.hs
+    build-depends:
+        base ^>=4.16.4.0,
+        HUnit,
+        tiktoken-hs-bindings

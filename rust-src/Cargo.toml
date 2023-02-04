@@ -1,0 +1,17 @@
+[package]
+name = "tiktoken_hs_bindings_native"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tiktoken = { git = "https://github.com/zygi/tiktoken", default-features = false}
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+base64 = "0.13"
+rustc-hash = "1.1.0"
+lazy_static = "1.4.0"
