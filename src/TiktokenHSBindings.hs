@@ -20,5 +20,6 @@ encodeNative s = do
     resLen <- encode_native cstr ptr
     resPtr <- peek ptr
     res <- peekArray (fromIntegral resLen) resPtr
+    if resLen > 0 then free resPtr else return ()
     free ptr
     pure res
